@@ -4,63 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معرض أعمال المطور TIGER-CYBR-AI</title>
-    <script src="https://tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
+        /* إعدادات الخطوط والألوان الأساسية للمظهر المظلم الاحترافي */
         @import url('https://googleapis.com');
-        body { font-family: 'Cairo', sans-serif; background-color: #0b0f19; }
-        .gradient-text { background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .gradient-border:hover { border-color: transparent; background-image: linear-gradient(#0b0f19, #0b0f19), linear-gradient(135deg, #3b82f6, #8b5cf6); background-origin: border-box; background-clip: content-box, border-box; }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Cairo', sans-serif; background-color: #0b0f19; color: #e2e8f0; line-height: 1.6; padding-bottom: 50px; }
+        
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* الهيدر */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-b: 1px solid #1e293b; border-bottom: 1px solid #1e293b; }
+        .logo { font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-link { color: #94a3b8; text-decoration: none; transition: color 0.3s; font-weight: bold; }
+        .nav-link:hover { color: #ffffff; }
+
+        /* الواجهة الرئيسية */
+        .hero { text-align: center; padding: 80px 0 50px 0; position: relative; }
+        .hero h1 { font-size: 42px; font-weight: 900; margin-bottom: 20px; color: #ffffff; }
+        .hero h1 span { background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: #94a3b8; max-width: 600px; margin: 0 auto; font-size: 18px; }
+
+        /* شبكة المشاريع */
+        .projects-section { padding: 40px 0; }
+        .section-title { font-size: 28px; font-weight: 900; margin-bottom: 30px; text-align: right; color: #ffffff; border-right: 4px solid #3b82f6; padding-right: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        /* بطاقة المشروع الاحترافية */
+        .card { background-color: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 25px; display: flex; flex-content: space-between; flex-direction: column; justify-content: space-between; transition: transform 0.3s, border-color 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #3b82f6; }
+        .card-image-placeholder { height: 160px; background-color: #1f2937; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #4b5563; font-size: 40px; font-weight: bold; }
+        
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .card-title { font-size: 20px; font-weight: 700; color: #ffffff; }
+        .badge { background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); font-size: 12px; padding: 4px 10px; border-radius: 6px; font-weight: bold; }
+        .card-desc { color: #94a3b8; font-size: 14px; margin-bottom: 20px; text-align: right; }
+        
+        /* أزرار التحميل */
+        .btn { display: block; width: 100%; text-align: center; background-color: #1f2937; color: #6b7280; border: none; font-weight: bold; padding: 12px 0; border-radius: 12px; cursor: not-allowed; text-decoration: none; font-size: 16px; transition: background-color 0.3s; }
+
+        /* الفوتر */
+        footer { text-align: center; padding: 40px 0 10px 0; border-top: 1px solid #111827; margin-top: 60px; color: #4b5563; font-size: 14px; }
     </style>
 </head>
-<body class="text-gray-200 antialiased overflow-x-hidden">
+<body>
 
-    <!-- Navbar -->
-    <nav class="container mx-auto px-6 py-5 flex justify-between items-center border-b border-gray-800/60">
-        <div class="text-2xl font-black gradient-text tracking-wider">TIGER-CYBR-AI</div>
-        <div class="flex gap-4">
-            <a href="#projects" class="text-gray-400 hover:text-white transition-colors pt-1">مشاريعي</a>
-        </div>
-    </nav>
+    <div class="container">
+        <!-- الهيدر -->
+        <nav>
+            <div class="logo">TIGER-CYBR-AI</div>
+            <a href="#projects" class="nav-link">مشاريعي</a>
+        </nav>
 
-    <!-- Hero Section -->
-    <section class="container mx-auto px-6 pt-20 pb-16 text-center relative">
-        <div class="absolute inset-0 bg-purple-500/10 blur-[150px] rounded-full w-96 h-96 mx-auto -top-20 pointer-events-none"></div>
-        <h1 class="text-4xl md:text-6xl font-black leading-tight">مرحباً بك في خزانة <span class="gradient-text">ألعابي وبرامجي</span></h1>
-        <p class="text-gray-400 mt-6 max-w-2xl mx-auto text-lg leading-relaxed">
-            هنا أقوم ببناء وتجهيز مجموعة من التطبيقات والألعاب الاحترافية الخاصة بي كمطور مستقل. يمكنك ترقب الإطلاقات القادمة قريباً جداً!
-        </p>
-    </section>
+        <!-- الواجهة الرئيسية -->
+        <section class="hero">
+            <h1>مرحباً بك في خزانة <span>ألعابي وبرامجي</span></h1>
+            <p>هنا أقوم ببناء وتجهيز مجموعة من التطبيقات والألعاب الاحترافية الخاصة بي كمطور مستقل. يمكنك ترقب الإطلاقات القادمة قريباً جداً!</p>
+        </section>
 
-    <!-- Projects Grid -->
-    <section id="projects" class="container mx-auto px-6 py-12 max-w-6xl">
-        <h2 class="text-3xl font-black mb-10 text-right flex items-center gap-3">
-            <i class="fa-solid fa-cubes text-blue-500"></i> المشاريع الحالية والمستقبلية
-        </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- بطاقة مشروع قيد التطوير -->
-            <div class="bg-gray-900/40 border border-gray-800/80 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 gradient-border">
-                <div>
-                    <div class="aspect-video bg-gray-800/30 rounded-xl mb-4 flex items-center justify-center text-gray-700 overflow-hidden">
-                        <i class="fa-solid fa-code text-5xl opacity-30"></i>
+        <!-- قسم المشاريع -->
+        <section id="projects" class="projects-section">
+            <h2 class="section-title">المشاريع الحالية والمستقبلية</h2>
+            
+            <div class="grid">
+                <!-- بطاقة مشروع قيد التطوير -->
+                <div class="card">
+                    <div class="card-image-placeholder">&lt;/&gt;</div>
+                    <div class="card-header">
+                        <h3 class="card-title">مشروعي الأول</h3>
+                        <span class="badge">قيد التطوير 🛠️</span>
                     </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-gray-300">مشروعي الأول</h3>
-                        <span class="bg-amber-500/10 text-amber-400 text-xs px-2.5 py-1 rounded-md border border-amber-500/20 font-bold">قيد التطوير 🛠️</span>
-                    </div>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">أعمل حالياً على تصميم وتطوير هذا المشروع بكفاءة عالية، وسيكون متاحاً للتحميل المباشر فور الانتهاء منه.</p>
+                    <p class="card-desc">أعمل حالياً على تصميم وتطوير هذا المشروع بكفاءة عالية، وسيكون متاحاً للتحميل المباشر فور الانتهاء منه.</p>
+                    <button class="btn" disabled>قريباً فور الانتهاء</button>
                 </div>
-                <button disabled class="w-full bg-gray-800 text-gray-500 cursor-not-allowed font-bold py-3 rounded-xl flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-clock text-sm"></i> قريباً فور الانتهاء
-                </button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="text-center py-8 text-xs text-gray-600 border-t border-gray-900 mt-12">
-        <p>صنع بكل حب وتميز بواسطة TIGER-CYBR-AI © 2026</p>
-    </footer>
+        <!-- الفوتر -->
+        <footer>
+            <p>صنع بكل حب وتميز بواسطة TIGER-CYBR-AI © 2026</p>
+        </footer>
+    </div>
 
 </body>
 </html>
