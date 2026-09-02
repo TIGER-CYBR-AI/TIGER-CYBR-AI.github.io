@@ -3,48 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض أعمال المطور TIGER-CYBR-AI</title>
+    <title>TIGER-CYBR-AI | معرض المطور الاحترافي</title>
     <style>
-        /* إعدادات الخطوط والألوان الأساسية للمظهر المظلم الاحترافي */
-        @import url('https://googleapis.com');
-        
+        /* نظام الألوان الفخم وخطوط النظام المضمونة بدون إنترنت خارجي */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Cairo', sans-serif; background-color: #0b0f19; color: #e2e8f0; line-height: 1.6; padding-bottom: 50px; }
         
-        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        body { 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            background-color: #030712; 
+            color: #f3f4f6; 
+            line-height: 1.6; 
+            padding-bottom: 80px;
+        }
         
-        /* الهيدر */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-b: 1px solid #1e293b; border-bottom: 1px solid #1e293b; }
-        .logo { font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-link { color: #94a3b8; text-decoration: none; transition: color 0.3s; font-weight: bold; }
-        .nav-link:hover { color: #ffffff; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* الهيدر الاحترافي المتطور */
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 25px 0; 
+            border-bottom: 1px solid #1f2937; 
+        }
+        .logo { 
+            font-size: 26px; 
+            font-weight: 800; 
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #3b82f6, #a855f7); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .nav-link { 
+            color: #9ca3af; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 15px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            transition: all 0.3s ease; 
+        }
+        .nav-link:hover { color: #ffffff; border-color: #3b82f6; box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); }
 
-        /* الواجهة الرئيسية */
-        .hero { text-align: center; padding: 80px 0 50px 0; position: relative; }
-        .hero h1 { font-size: 42px; font-weight: 900; margin-bottom: 20px; color: #ffffff; }
-        .hero h1 span { background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: #94a3b8; max-width: 600px; margin: 0 auto; font-size: 18px; }
+        /* منطقة الاستعراض الرئيسية (Hero) */
+        .hero { text-align: center; padding: 100px 0 60px 0; position: relative; }
+        .hero h1 { font-size: 48px; font-weight: 900; margin-bottom: 24px; color: #ffffff; letter-spacing: -1px; }
+        .hero h1 span { background: linear-gradient(135deg, #3b82f6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: #9ca3af; max-width: 650px; margin: 0 auto; font-size: 19px; font-weight: 400; }
 
-        /* شبكة المشاريع */
+        /* قسم شبكة المشاريع والبطاقات */
         .projects-section { padding: 40px 0; }
-        .section-title { font-size: 28px; font-weight: 900; margin-bottom: 30px; text-align: right; color: #ffffff; border-right: 4px solid #3b82f6; padding-right: 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .section-title { 
+            font-size: 26px; 
+            font-weight: 800; 
+            margin-bottom: 40px; 
+            text-align: right; 
+            color: #ffffff; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 25px;
+            background: linear-gradient(#3b82f6, #a855f7);
+            border-radius: 10px;
+        }
         
-        /* بطاقة المشروع الاحترافية */
-        .card { background-color: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 25px; display: flex; flex-content: space-between; flex-direction: column; justify-content: space-between; transition: transform 0.3s, border-color 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #3b82f6; }
-        .card-image-placeholder { height: 160px; background-color: #1f2937; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #4b5563; font-size: 40px; font-weight: bold; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        /* تصميم بطاقة النيون الاحترافية */
+        .card { 
+            background: linear-gradient(145deg, #111827, #0f172a); 
+            border: 1px solid #1f2937; 
+            border-radius: 20px; 
+            padding: 28px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover { 
+            transform: translateY(-8px); 
+            border-color: #a855f7; 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 0 20px rgba(168, 85, 247, 0.15); 
+        }
+        
+        .card-image-placeholder { 
+            height: 180px; 
+            background-color: #1f2937; 
+            border-radius: 14px; 
+            margin-bottom: 24px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #6b7280; 
+            font-size: 46px; 
+            font-family: monospace;
+            border: 1px dashed #374151;
+        }
         
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .card-title { font-size: 20px; font-weight: 700; color: #ffffff; }
-        .badge { background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); font-size: 12px; padding: 4px 10px; border-radius: 6px; font-weight: bold; }
-        .card-desc { color: #94a3b8; font-size: 14px; margin-bottom: 20px; text-align: right; }
+        .card-title { font-size: 22px; font-weight: 700; color: #ffffff; }
         
-        /* أزرار التحميل */
-        .btn { display: block; width: 100%; text-align: center; background-color: #1f2937; color: #6b7280; border: none; font-weight: bold; padding: 12px 0; border-radius: 12px; cursor: not-allowed; text-decoration: none; font-size: 16px; transition: background-color 0.3s; }
+        .badge { 
+            background: rgba(245, 158, 11, 0.1); 
+            color: #fbbf24; 
+            border: 1px solid rgba(245, 158, 11, 0.3); 
+            font-size: 13px; 
+            padding: 5px 12px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+        }
+        
+        .card-desc { color: #9ca3af; font-size: 15px; margin-bottom: 25px; text-align: right; text-justify: inter-word; }
+        
+        /* الأزرار العصرية المطفأة للمشاريع القادمة */
+        .btn-disabled { 
+            display: block; 
+            width: 100%; 
+            text-align: center; 
+            background-color: #1f2937; 
+            color: #4b5563; 
+            border: 1px solid #374151;
+            font-weight: 700; 
+            padding: 14px 0; 
+            border-radius: 12px; 
+            cursor: not-allowed; 
+            font-size: 15px; 
+        }
 
         /* الفوتر */
-        footer { text-align: center; padding: 40px 0 10px 0; border-top: 1px solid #111827; margin-top: 60px; color: #4b5563; font-size: 14px; }
+        footer { text-align: center; padding: 60px 0 10px 0; border-top: 1px solid #1f2937; margin-top: 80px; color: #4b5563; font-size: 14px; font-weight: 500; }
     </style>
 </head>
 <body>
@@ -53,36 +148,47 @@
         <!-- الهيدر -->
         <nav>
             <div class="logo">TIGER-CYBR-AI</div>
-            <a href="#projects" class="nav-link">مشاريعي</a>
+            <a href="#projects" class="nav-link">🗂️ تصفح مشاريعي</a>
         </nav>
 
         <!-- الواجهة الرئيسية -->
         <section class="hero">
             <h1>مرحباً بك في خزانة <span>ألعابي وبرامجي</span></h1>
-            <p>هنا أقوم ببناء وتجهيز مجموعة من التطبيقات والألعاب الاحترافية الخاصة بي كمطور مستقل. يمكنك ترقب الإطلاقات القادمة قريباً جداً!</p>
+            <p>هنا أضع حجر الأساس لمعرض أعمالي البرمجية. أقوم حالياً بتطوير اللمسات الأخيرة لمجموعة من التطبيقات والألعاب المتميزة، ترقبوا إطلاق روابط التحميل المباشرة هنا قريباً جداً!</p>
         </section>
 
         <!-- قسم المشاريع -->
         <section id="projects" class="projects-section">
-            <h2 class="section-title">المشاريع الحالية والمستقبلية</h2>
+            <h2 class="section-title">خزنة المشاريع القادمة</h2>
             
             <div class="grid">
-                <!-- بطاقة مشروع قيد التطوير -->
+                <!-- بطاقة مشروع 1 قيد التطوير -->
                 <div class="card">
-                    <div class="card-image-placeholder">&lt;/&gt;</div>
+                    <div class="card-image-placeholder">&lt; TIGER_GAME /&gt;</div>
                     <div class="card-header">
                         <h3 class="card-title">مشروعي الأول</h3>
                         <span class="badge">قيد التطوير 🛠️</span>
                     </div>
                     <p class="card-desc">أعمل حالياً على تصميم وتطوير هذا المشروع بكفاءة عالية، وسيكون متاحاً للتحميل المباشر فور الانتهاء منه.</p>
-                    <button class="btn" disabled>قريباً فور الانتهاء</button>
+                    <button class="btn-disabled" disabled>⌛ قريباً فور الانتهاء</button>
+                </div>
+
+                <!-- بطاقة مشروع 2 قيد التطوير -->
+                <div class="card">
+                    <div class="card-image-placeholder">&lt; CYBER_APP /&gt;</div>
+                    <div class="card-header">
+                        <h3 class="card-title">مشروعي الثاني</h3>
+                        <span class="badge">قيد التطوير 🛠️</span>
+                    </div>
+                    <p class="card-desc">تطبيق ذكي متكامل مبني بأحدث التقنيات البرمجية لتوفير تجربة مستخدم فريدة وسلسة.</p>
+                    <button class="btn-disabled" disabled>⌛ قريباً فور الانتهاء</button>
                 </div>
             </div>
         </section>
 
         <!-- الفوتر -->
         <footer>
-            <p>صنع بكل حب وتميز بواسطة TIGER-CYBR-AI © 2026</p>
+            <p>صنع بكل تميز واحترافية بواسطة TIGER-CYBR-AI © 2026</p>
         </footer>
     </div>
 
