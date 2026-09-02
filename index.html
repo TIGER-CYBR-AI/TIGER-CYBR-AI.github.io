@@ -3,207 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIGER-CYBR-AI | المستودع البرمجي الاحترافي</title>
+    <title>TIGER-CYBR-AI | المستودع البرمجي للمستقبل</title>
     <style>
-        /* إعدادات وتصفير عامة لشاشة عصرية */
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        /* إعدادات وتصفير عامة للمظهر الخارق */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         
         body { 
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #050508; 
+            background-color: #030307; 
             color: #f3f4f6; 
             overflow-x: hidden;
-            position: relative;
-            min-height: 100vh;
-            padding-bottom: 60px;
+            perspective: 1000px; /* لعمل البعد الثالث في الصفحة */
         }
 
-        /* تأثير الخلفية المتحركة الديناميكية (الشبكة المستقبلية) */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(18, 24, 38, 0.4) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(18, 24, 38, 0.4) 1px, transparent 1px);
-            background-size: 40px 40px;
+        /* الخلفية الحية المتنفسة الرقمية */
+        .live-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% 50%, #0c1020 0%, #030307 80%);
             z-index: -2;
-            animation: backgroundMove 20s linear infinite;
         }
-
-        /* مصادر الإضاءة النيونية العائمة في الخلفية */
-        .blur-orb-1 {
-            position: absolute; top: -10%; left: 20%; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-            z-index: -1; pointer-events: none;
+        .live-bg::after {
+            content: ""; position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(59, 130, 246, 0.03) 2px, transparent 2px),
+                              linear-gradient(90deg, rgba(59, 130, 246, 0.03) 2px, transparent 2px);
+            background-size: 50px 50px;
+            transform: rotateX(60deg) translateZ(-200px);
+            transform-origin: top;
+            animation: gridDrive 12s linear infinite;
         }
-        .blur-orb-2 {
-            position: absolute; top: 30%; right: 10%; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%);
-            z-index: -1; pointer-events: none;
-        }
-
-        @keyframes backgroundMove {
+        @keyframes gridDrive {
             0% { background-position: 0 0; }
-            100% { background-position: 40px 40px; }
+            100% { background-position: 0 50px; }
         }
 
-        .container { width: 92%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        /* هالات نيون سائلة متوهجة في العمق */
+        .neon-glow-core {
+            position: fixed; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+            top: 20%; left: 10%; z-index: -1; filter: blur(50px);
+            animation: floatGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes floatGlow {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(40px) scale(1.1); }
+        }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
-        /* الهيدر الاحترافي */
+        /* الهيدر الزجاجي الطائر */
         nav { 
-            display: flex; justify-content: space-between; align-items: center; padding: 30px 0; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; 
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; margin-top: 20px;
         }
         .logo { 
-            font-size: 28px; font-weight: 900; letter-spacing: 1.5px;
-            background: linear-gradient(135deg, #3b82f6, #a855f7, #ec4899); 
+            font-size: 28px; font-weight: 900; letter-spacing: 2px;
+            background: linear-gradient(90deg, #00f2fe, #4facfe, #00f2fe);
+            background-size: 200% auto;
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+            animation: shineText 3s linear infinite;
         }
-        .nav-link { 
-            color: #ffffff; text-decoration: none; font-weight: 700; font-size: 14px;
-            padding: 10px 20px; border-radius: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        @keyframes shineText { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+
+        /* ستايل الكلام المستقبلي (Hero) */
+        .hero { text-align: center; padding: 140px 0 100px 0; }
+        .hero h1 { font-size: 56px; font-weight: 900; margin-bottom: 25px; color: #ffffff; letter-spacing: -2px; }
+        .hero h1 span { background: linear-gradient(135deg, #00f2fe, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(0, 242, 254, 0.2); }
+        .hero p { color: #9ca3af; max-width: 750px; margin: 0 auto; font-size: 22px; font-weight: 300; line-height: 1.8; letter-spacing: 0.5px; }
+
+        /* تأثيرات التقليب والظهور الاحترافي مع النزول (Scroll Animation) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(80px) rotateX(-15deg);
+            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .nav-link:hover { 
-            border-color: #3b82f6; background: rgba(59, 130, 246, 0.1);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); transform: translateY(-2px);
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
         }
 
-        /* واجهة الاستعراض الجذابة للإعلانات (Hero) */
-        .hero { text-align: center; padding: 120px 0 80px 0; }
-        .hero h1 { font-size: 54px; font-weight: 900; margin-bottom: 24px; color: #ffffff; letter-spacing: -1.5px; line-height: 1.2; }
-        .hero h1 span { background: linear-gradient(135deg, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: #9ca3af; max-width: 700px; margin: 0 auto; font-size: 20px; font-weight: 400; line-height: 1.7; }
-
-        /* قسم شبكة المشاريع */
-        .projects-section { padding: 40px 0; }
-        .section-title { 
-            font-size: 28px; font-weight: 900; margin-bottom: 50px; text-align: right; color: #ffffff; 
-            display: flex; align-items: center; gap: 15px;
-        }
-        .section-title::before {
-            content: ""; display: inline-block; width: 6px; height: 28px;
-            background: linear-gradient(#3b82f6, #ec4899); border-radius: 10px;
-        }
+        /* شبكة العرض المستقبلي */
+        .projects-section { padding: 60px 0; }
+        .section-title { font-size: 32px; font-weight: 900; margin-bottom: 60px; text-align: right; color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 35px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         
-        /* بطاقة الزجاج والنيون الاحترافية المتطورة (Glassmorphism) */
+        /* بطاقات الكريستال والزجاج التفاعلية المتوهجة */
         .card { 
-            background: rgba(17, 24, 39, 0.55); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            border-radius: 24px; padding: 30px; 
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 30px; padding: 35px; 
             display: flex; flex-direction: column; justify-content: space-between; 
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative; overflow: hidden;
-        }
-        /* تأثير خط النيون العلوي على البطاقة عند الـ Hover */
-        .card::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899);
-            opacity: 0; transition: opacity 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
         .card:hover { 
-            transform: translateY(-10px); 
-            border-color: rgba(168, 85, 247, 0.3); 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.15); 
+            transform: translateY(-15px) scale(1.02); 
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0, 242, 254, 0.15);
         }
-        .card:hover::before { opacity: 1; }
         
-        /* مكان عرض صورة اللعبة/البرنامج البرمجي */
-        .card-image-placeholder { 
-            height: 190px; background: linear-gradient(135deg, #1f2937, #111827); 
-            border-radius: 16px; margin-bottom: 24px; 
+        /* شاشة العرض الرقمية داخل البطاقة */
+        .card-display { 
+            height: 200px; background: #070712; border-radius: 20px; margin-bottom: 30px; 
             display: flex; align-items: center; justify-content: center; 
-            color: rgba(255, 255, 255, 0.15); font-size: 32px; font-weight: 800; font-family: monospace;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            letter-spacing: 1px;
+            color: #00f2fe; font-size: 26px; font-family: monospace; font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.03); position: relative;
+            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.05);
+        }
+        .card-display::before {
+            content: "ONLINE SYSTEM"; position: absolute; top: 15px; right: 20px; font-size: 10px; color: #4b5563; letter-spacing: 2px;
         }
         
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-        .card-title { font-size: 24px; font-weight: 800; color: #ffffff; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .card-title { font-size: 26px; font-weight: 800; color: #ffffff; }
         
         .badge { 
-            background: rgba(245, 158, 11, 0.1); color: #fbbf24; 
-            border: 1px solid rgba(245, 158, 11, 0.25); 
-            font-size: 13px; padding: 6px 14px; border-radius: 10px; font-weight: 800; 
+            background: rgba(0, 242, 254, 0.08); color: #00f2fe; 
+            border: 1px solid rgba(0, 242, 254, 0.2); 
+            font-size: 13px; padding: 6px 16px; border-radius: 30px; font-weight: 800; 
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
         }
         
-        .card-desc { color: #9ca3af; font-size: 16px; margin-bottom: 30px; text-align: right; line-height: 1.6; }
+        .card-desc { color: #9ca3af; font-size: 16px; margin-bottom: 35px; text-align: justify; line-height: 1.7; }
         
-        /* أزرار التحميل المستقبلية المطفأة بذكاء */
-        .btn-disabled { 
-            display: block; width: 100%; text-align: center; 
-            background: rgba(255, 255, 255, 0.02); color: #4b5563; 
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            font-weight: 800; padding: 16px 0; border-radius: 14px; 
-            cursor: not-allowed; font-size: 15px; letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+        /* أزرار السائل الزجاجية المستقبليّة تتلون عند الضغط وتتوهج */
+        .cyber-btn { 
+            display: block; width: 100%; text-align: center; border: none;
+            background: linear-gradient(90deg, #1e293b, #0f172a);
+            color: #9ca3af; font-weight: 800; padding: 18px 0; border-radius: 20px; 
+            font-size: 16px; letter-spacing: 1px; position: relative; overflow: hidden;
+            transition: all 0.4s ease; cursor: pointer;
+        }
+        .cyber-btn:hover {
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            color: #030307; font-weight: 900;
+            box-shadow: 0 0 30px #00f2fe;
+            transform: scale(1.02);
+        }
+        .cyber-btn:active {
+            transform: scale(0.98);
+            filter: brightness(1.2);
         }
 
-        /* الفوتر العالي المظهر */
-        footer { text-align: center; padding: 80px 0 20px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 100px; color: #4b5563; font-size: 14px; font-weight: 600; }
+        /* الفوتر المستقبلي */
+        footer { text-align: center; padding: 100px 0 30px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 120px; color: #4b5563; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-    <!-- عناصر الإضاءة الخلفية -->
-    <div class="blur-orb-1"></div>
-    <div class="blur-orb-2"></div>
+    <!-- عناصر المحرك المباشر للخلفية الحية -->
+    <div class="live-bg"></div>
+    <div class="neon-glow-core"></div>
 
     <div class="container">
-        <!-- الهيدر -->
+        <!-- الهيدر الزجاجي -->
         <nav>
-            <div class="logo">TIGER-CYBR-AI</div>
-            <a href="#projects" class="nav-link">📂 تفقد مشاريعي مجاناً</a>
+            <div class="logo">[ TIGER // CYBER ]</div>
+            <a href="#projects" class="cyber-btn" style="width: auto; padding: 10px 25px; border-radius: 12px; background: rgba(255,255,255,0.05); color: #fff;">CORE_REPOSITORY</a>
         </nav>
 
-        <!-- الواجهة الرئيسية الإعلانية الاستعراضية -->
+        <!-- الواجهة الرئيسية -->
         <section class="hero">
-            <h1>مرحباً بك في خزانة <span>ألعابي وبرامجي</span></h1>
-            <p>هنا أضع حجر الأساس لمعرض أعمالي ومشاريعي البرمجية. أقوم حالياً ببرمجة وتطوير اللمسات الأخيرة لمجموعة من التطبيقات والألعاب المتميزة الفريدة، ترقبوا إطلاق الروابط قريباً!</p>
+            <h1>مرحباً بك في ترسانة <span>الأنظمة والألعاب</span></h1>
+            <p>منصة رقمية مستقلة لاستعراض برمجيات المستقبل. نقوم حالياً بهندسة اللمسات الأخيرة وتجهيز المعرض لإطلاق ألعاب وتطبيقات استثنائية. انتظروا شفرات التحميل قريباً جداً.</p>
         </section>
 
-        <!-- قسم المشاريع المميز -->
+        <!-- قسم المشاريع القابل للقلب مع التمرير -->
         <section id="projects" class="projects-section">
-            <h2 class="section-title">ترسانة المشاريع الجاري إعدادها</h2>
+            <h2 class="section-title">المشاريع والمشغلات الجاري معالجتها</h2>
             
             <div class="grid">
-                <!-- بطاقة مشروع 1 قيد التطوير -->
-                <div class="card">
-                    <div class="card-image-placeholder">[ TIGER_CORE_GAME ]</div>
+                <!-- بطاقة 1 متحركة بالكامل -->
+                <div class="card reveal">
+                    <div class="card-display">[ ENGINE_INIT_01 ]</div>
                     <div class="card-header">
                         <h3 class="card-title">مشروعي الأول</h3>
-                        <span class="badge">قيد التطوير 🛠️</span>
+                        <span class="badge">DEVELOPMENT 🛠️</span>
                     </div>
-                    <p class="card-desc">أعمل حالياً على تصميم وتطوير هذا المشروع بكفاءة عالية وبأحدث التقنيات لضمان أداء خارق، وسيكون متاحاً للتحميل المباشر فور الانتهاء.</p>
-                    <button class="btn-disabled" disabled>🔒 قريباً فور اكتمال التثبيت</button>
+                    <p class="card-desc">نظام برمجي متكامل ومطور بأحدث محركات التطوير لتقديم كفاءة مطلقة وأداء تفاعلي خارق للعادة. سيتم ربط ميزة التحميل المباشر فور الفراغ منه.</p>
+                    <button class="cyber-btn">🔒 قريباً فور اكتمال البناء</button>
                 </div>
 
-                <!-- بطاقة مشروع 2 قيد التطوير -->
-                <div class="card">
-                    <div class="card-image-placeholder">[ CYBER_SYSTEM_APP ]</div>
+                <!-- بطاقة 2 متحركة بالكامل -->
+                <div class="card reveal">
+                    <div class="card-display">[ CYBER_PROTOCOL ]</div>
                     <div class="card-header">
                         <h3 class="card-title">مشروعي الثاني</h3>
-                        <span class="badge">قيد التطوير 🛠️</span>
+                        <span class="badge">DEVELOPMENT 🛠️</span>
                     </div>
-                    <p class="card-desc">تطبيق ذكي متكامل مبني لتقديم حلول متطورة وتجربة مستخدم خارقة تعتمد على السلاسة والسرعة التامة.</p>
-                    <button class="btn-disabled" disabled>🔒 قريباً فور اكتمال التثبيت</button>
+                    <p class="card-desc">تطبيق ذكي متطور يتم إعداده لمنح المستخدمين تحكماً كاملاً وتجربة رقمية فريدة تسبق العصر الحالي بسنوات.</p>
+                    <button class="cyber-btn">🔒 قريباً فور اكتمال البناء</button>
                 </div>
             </div>
         </section>
 
         <!-- الفوتر -->
         <footer>
-            <p>صنع بكل تميز واحترافية رقمية بواسطة TIGER-CYBR-AI © 2026</p>
+            <p>// NODE_ESTABLISHED // TIGER-CYBR-AI © 2026</p>
         </footer>
     </div>
-
-</body>
-</html>
