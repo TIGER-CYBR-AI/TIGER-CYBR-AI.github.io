@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض أعمال المطور TIGER-CYBR-AI</title>
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        @import url('https://googleapis.com');
+        body { font-family: 'Cairo', sans-serif; background-color: #0b0f19; }
+        .gradient-text { background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-border:hover { border-color: transparent; background-image: linear-gradient(#0b0f19, #0b0f19), linear-gradient(135deg, #3b82f6, #8b5cf6); background-origin: border-box; background-clip: content-box, border-box; }
+    </style>
+</head>
+<body class="text-gray-200 antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="container mx-auto px-6 py-5 flex justify-between items-center border-b border-gray-800/60">
+        <div class="text-2xl font-black gradient-text tracking-wider">TIGER-CYBR-AI</div>
+        <div class="flex gap-4">
+            <a href="#projects" class="text-gray-400 hover:text-white transition-colors pt-1">مشاريعي</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-6 pt-20 pb-16 text-center relative">
+        <div class="absolute inset-0 bg-purple-500/10 blur-[150px] rounded-full w-96 h-96 mx-auto -top-20 pointer-events-none"></div>
+        <h1 class="text-4xl md:text-6xl font-black leading-tight">مرحباً بك في خزانة <span class="gradient-text">ألعابي وبرامجي</span></h1>
+        <p class="text-gray-400 mt-6 max-w-2xl mx-auto text-lg leading-relaxed">
+            هنا أقوم ببناء وتجهيز مجموعة من التطبيقات والألعاب الاحترافية الخاصة بي كمطور مستقل. يمكنك ترقب الإطلاقات القادمة قريباً جداً!
+        </p>
+    </section>
+
+    <!-- Projects Grid -->
+    <section id="projects" class="container mx-auto px-6 py-12 max-w-6xl">
+        <h2 class="text-3xl font-black mb-10 text-right flex items-center gap-3">
+            <i class="fa-solid fa-cubes text-blue-500"></i> المشاريع الحالية والمستقبلية
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- بطاقة مشروع قيد التطوير -->
+            <div class="bg-gray-900/40 border border-gray-800/80 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 gradient-border">
+                <div>
+                    <div class="aspect-video bg-gray-800/30 rounded-xl mb-4 flex items-center justify-center text-gray-700 overflow-hidden">
+                        <i class="fa-solid fa-code text-5xl opacity-30"></i>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-gray-300">مشروعي الأول</h3>
+                        <span class="bg-amber-500/10 text-amber-400 text-xs px-2.5 py-1 rounded-md border border-amber-500/20 font-bold">قيد التطوير 🛠️</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">أعمل حالياً على تصميم وتطوير هذا المشروع بكفاءة عالية، وسيكون متاحاً للتحميل المباشر فور الانتهاء منه.</p>
+                </div>
+                <button disabled class="w-full bg-gray-800 text-gray-500 cursor-not-allowed font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-clock text-sm"></i> قريباً فور الانتهاء
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-xs text-gray-600 border-t border-gray-900 mt-12">
+        <p>صنع بكل حب وتميز بواسطة TIGER-CYBR-AI © 2026</p>
+    </footer>
+
+</body>
+</html>
