@@ -3,194 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIGER-CYBR-AI | معرض المطور الاحترافي للمستقبل</title>
+    <title>TIGER-CYBR-AI | المستودع المستقبلي</title>
     <style>
-        /* تصفير الإعدادات وحل مشكلة الاختفاء تماماً */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 100%; min-height: 100vh; background-color: #040209; color: #f3f4f6; }
-        body { font-family: system-ui, -apple-system, sans-serif; padding-bottom: 80px; position: relative; }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background-color: #020205; 
+            color: #ffffff; 
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-        /* الخلفية الرقمية الحية المتحركة (تأثير الفضاء البرمجي) */
-        .cyber-bg {
+        /* 📺 خلفية فيديو حية مدمجة للموقع بالكامل */
+        .video-bg {
+            position: fixed; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -2; pointer-events: none;
+            filter: brightness(0.25) contrast(1.1); /* تعتيم الفيديو لكي يبرز الكلام والأزرار */
+        }
+        
+        /* طبقة حماية زجاجية فوق الفيديو لمنع تشتيت العين */
+        .overlay {
             position: fixed; inset: 0;
-            background-image: linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            animation: gridScroll 20s linear infinite;
-        }
-        @keyframes gridScroll {
-            0% { background-position: 0 0; }
-            100% { background-position: 50px 50px; }
+            background: radial-gradient(circle at center, transparent 20%, #020205 90%);
+            z-index: -1; pointer-events: none;
         }
 
-        /* هالات الضوء النيوني المتوهج في العمق */
-        .neon-sphere {
-            position: fixed; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
-            top: -10%; left: -10%; z-index: -1; pointer-events: none;
+        .container { width: 90%; max-width: 600px; text-align: center; z-index: 1; }
+        
+        h1 { font-size: 36px; font-weight: 900; margin-bottom: 40px; text-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+        h1 span { background: linear-gradient(90deg, #00f2fe, #4facfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* 🧼 تصميم الأزرار البلورية الهلامية (Liquid Glass Button) كالصورة الثانية */
+        .glass-btn-container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px; padding: 15px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            display: flex; flex-direction: column; gap: 15px; width: 100%;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 10px; }
-        
-        /* هيدر زجاجي طائر فخم */
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; padding: 20px; 
-            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; margin-top: 25px;
-        }
-        .logo { 
-            font-size: 26px; font-weight: 900; letter-spacing: 1px;
-            background: linear-gradient(90deg, #00f2fe, #a855f7);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        .glass-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px; padding: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* واجهة الاستعراض (Hero Section) والكلام المستقبلي */
-        .hero { text-align: center; padding: 90px 0 60px 0; }
-        .hero h1 { font-size: 46px; font-weight: 900; margin-bottom: 20px; color: #ffffff; }
-        .hero h1 span { background: linear-gradient(135deg, #00f2fe, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: #9ca3af; max-width: 700px; margin: 0 auto; font-size: 18px; line-height: 1.7; }
-
-        /* قسم المشاريع */
-        .projects-section { padding: 30px 0; }
-        .section-title { font-size: 28px; font-weight: 800; margin-bottom: 40px; text-align: right; color: #ffffff; border-right: 4px solid #a855f7; padding-right: 12px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
-        
-        /* 🎬 تأثير التقليب الفخم 3D المدمج ذكياً عند النزول */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px) scale(0.95);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        /* حرك السائل المتوهج عند وضع الماوس أو اللمس */
+        .glass-item::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%); transition: transform 0.6s ease;
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        .glass-item:hover::before { transform: translateX(100%); }
+        .glass-item:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(0, 242, 254, 0.3);
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
         }
 
-        /* بطاقات الكريستال والزجاج التفاعلية (Glassmorphism) */
-        .card { 
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%); 
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 24px; padding: 30px; 
-            display: flex; flex-direction: column; justify-content: space-between; 
-            transition: all 0.4s ease;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-        /* تأثير التوهج والميلان عند حرك الماوس فوقها */
-        .card:hover { 
-            transform: translateY(-10px); 
-            border-color: rgba(0, 242, 254, 0.4);
-            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.15);
-        }
-        
-        .card-display { 
-            height: 170px; background: #0b0813; border-radius: 16px; margin-bottom: 25px; 
-            display: flex; align-items: center; justify-content: center; 
-            color: #00f2fe; font-size: 22px; font-family: monospace; font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .card-title { font-size: 22px; font-weight: 800; color: #ffffff; }
-        
-        .badge { 
-            background: rgba(0, 242, 254, 0.07); color: #00f2fe; border: 1px solid rgba(0, 242, 254, 0.2); 
-            font-size: 12px; padding: 5px 12px; border-radius: 20px; font-weight: 700; 
-        }
-        
-        .card-desc { color: #9ca3af; font-size: 15px; margin-bottom: 25px; text-align: right; line-height: 1.6; }
-        
-        /* 💎 أزرار زجاجية سائلة نيونية تتلون وتتوهج عند اللمس والضغط */
-        .cyber-btn { 
-            display: block; width: 100%; text-align: center; border: 1px solid rgba(255,255,255,0.08);
-            background: linear-gradient(90deg, #161224, #0d0a16);
-            color: #8b949e; font-weight: 700; padding: 15px 0; border-radius: 16px; 
-            font-size: 15px; text-decoration: none; transition: all 0.3s ease; cursor: pointer;
-        }
-        .cyber-btn:hover {
-            background: linear-gradient(90deg, #00f2fe, #a855f7);
-            color: #040209; font-weight: 900;
-            box-shadow: 0 0 25px #00f2fe;
-        }
-        .cyber-btn:active {
-            transform: scale(0.97);
-        }
+        .project-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+        .project-status { font-size: 12px; color: #00f2fe; letter-spacing: 1px; font-weight: bold; }
 
-        footer { text-align: center; padding: 60px 0 20px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 80px; color: #4b5563; font-size: 14px; font-weight: bold; }
+        /* 🪂 هندسة محاكي التحميل وشريط التقدم التفاعلي كالصورة الثالثة */
+        .download-box {
+            width: 100%; margin-top: 15px; display: none;
+            background: rgba(7, 7, 15, 0.8); border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 18px; padding: 20px; text-align: center;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.1);
+        }
+        
+        /* أنيميشن المظلة الطائرة */
+        .parachute-icon { font-size: 32px; color: #00f2fe; margin-bottom: 10px; display: inline-block; }
+        .animate-fall { animation: floatIcon 2s ease-in-out infinite alternate; }
+        @keyframes floatIcon { 0% { transform: translateY(-5px); } 100% { transform: translateY(5px); } }
+
+        .progress-bar-container {
+            width: 100%; height: 6px; background: rgba(255,255,255,0.05);
+            border-radius: 10px; margin: 15px 0; overflow: hidden; position: relative;
+        }
+        .progress-bar-fill {
+            height: 100%; width: 0%; background: linear-gradient(90deg, #00f2fe, #4facfe);
+            border-radius: 10px; transition: width 0.1s linear;
+            box-shadow: 0 0 10px #00f2fe;
+        }
+        .progress-text { font-size: 14px; font-weight: bold; color: #9ca3af; }
     </style>
 </head>
 <body>
 
-    <!-- عناصر المحرك الحي للخلفية السحرية -->
-    <div class="cyber-bg"></div>
-    <div class="neon-sphere"></div>
+    <!-- 📺 استدعاء فيديو الخلفية الحي (قم باستبدال الرابط أدناه برابط فيديو ألعابك لاحقاً) -->
+    <!-- استخدمت هنا فيديو عينة ذو طابع تقني داكن ومتحرك -->
+    <video class="video-bg" autoplay loop muted playsinline>
+        <source src="https://mixkit.co" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
 
     <div class="container">
-        <!-- الهيدر -->
-        <nav>
-            <div class="logo">[ TIGER // CYBER ]</div>
-        </nav>
+        <h1>ترسانة برمجيات <span>TIGER-CYBR-AI</span></h1>
 
-        <!-- الواجهة الاستعراضية -->
-        <section class="hero">
-            <h1>مرحباً بك في ترسانة <span>الأنظمة والألعاب</span></h1>
-            <p>منصة رقمية مستقبليّة متطورة لاستعراض برمجيات الجيل القادم. نقوم حالياً بهندسة اللمسات الأخيرة وتجهيز المعرض لإطلاق ألعاب فريدة، شفرات التحميل ستكون متاحة قريباً جداً.</p>
-        </section>
-
-        <!-- قسم المشاريع القابل للتقليب التلقائي مع التمرير لأسفل -->
-        <section id="projects" class="projects-section">
-            <h2 class="section-title">المشاريع والمشغلات الجاري معالجتها</h2>
+        <!-- 🧼 لوحة الأزرار البلورية الهلامية -->
+        <div class="glass-btn-container">
             
-            <div class="grid">
-                <!-- بطاقة 1 متفاعلة ثلاثية أبعاد -->
-                <div class="card reveal">
-                    <div class="card-display">[ ENGINE_INIT_01 ]</div>
-                    <div class="card-header">
-                        <h3 class="card-title">مشروعي الأول</h3>
-                        <span class="badge">DEVELOPMENT 🛠️</span>
+            <!-- زر المشروع الأول التفاعلي -->
+            <div class="glass-item" onclick="startDownload('prog-1', 'bar-1', 'txt-1', 'box-1')">
+                <div class="project-title">[ CYBER_PROTOCOL ]</div>
+                <div class="project-status">اضغط لبدء محاكاة التثبيت ⚡</div>
+                
+                <!-- صندوق التحميل المخفي كالصورة الثالثة ويتفعل عند الضغط -->
+                <div class="download-box" id="box-1" onclick="event.stopPropagation();">
+                    <div class="parachute-icon animate-fall">🪂</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="bar-1"></div>
                     </div>
-                    <p class="card-desc">نظام برمجي متكامل ومطور بأحدث محركات التطوير لتقديم كفاءة مطلقة وأداء تفاعلي خارق للعادة. سيتم ربط ميزة التحميل المباشر فور الفراغ منه.</p>
-                    <button class="cyber-btn">🔒 قريباً فور اكتمال البناء</button>
-                </div>
-
-                <!-- بطاقة 2 متفاعلة ثلاثية أبعاد -->
-                <div class="card reveal">
-                    <div class="card-display">[ CYBER_PROTOCOL ]</div>
-                    <div class="card-header">
-                        <h3 class="card-title">مشروعي الثاني</h3>
-                        <span class="badge">DEVELOPMENT 🛠️</span>
-                    </div>
-                    <p class="card-desc">تطبيق ذكي متطور يتم إعداده لمنح المستخدمين تحكماً كاملاً وتجربة رقمية فريدة تسبق العصر الحالي بسنوات.</p>
-                    <button class="cyber-btn">🔒 قريباً فور اكتمال البناء</button>
+                    <div class="progress-text" id="txt-1">تحميل الملف: 0%</div>
                 </div>
             </div>
-        </section>
 
-        <!-- الفوتر -->
-        <footer>
-            <p>// NODE_ESTABLISHED // TIGER-CYBR-AI © 2026</p>
-        </footer>
+            <!-- زر المشروع الثاني التفاعلي -->
+            <div class="glass-item" onclick="startDownload('prog-2', 'bar-2', 'txt-2', 'box-2')">
+                <div class="project-title">[ ENGINE_INIT_01 ]</div>
+                <div class="project-status">اضغط لبدء محاكاة التثبيت ⚡</div>
+                
+                <div class="download-box" id="box-2" onclick="event.stopPropagation();">
+                    <div class="parachute-icon animate-fall">🪂</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="bar-2"></div>
+                    </div>
+                    <div class="progress-text" id="txt-2">تحميل الملف: 0%</div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <!-- محرك الجافا سكريبت الأصلي للتقليب والظهور مع حركة شاشتك -->
+    <!-- 🧠 محرك الجافا سكريبت لتشغيل العداد وشريط التقدم التفاعلي الحقيقي عند النقر -->
     <script>
-        function runReveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
+        function startDownload(btnId, barId, textId, boxId) {
+            const box = document.getElementById(boxId);
+            const bar = document.getElementById(barId);
+            const text = document.getElementById(textId);
+            
+            // إظهار صندوق التحميل بتأثير أنيق
+            box.style.display = "block";
+            
+            let width = 0;
+            // محاكاة سرعة العداد وشريط التقدم الرقمي
+            const interval = setInterval(function() {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    text.innerText = "✓ اكتمل التحميل بنجاح!";
+                    text.style.color = "#00f2fe";
                 } else {
-                    reveals[i].classList.remove('active');
+                    width++;
+                    bar.style.width = width + '%';
+                    text.innerText = "جاري تحميل وتجهيز الملف: " + width + "%";
                 }
-            }
+            }, 40); // سرعة العداد بالملي ثانية
         }
-        window.addEventListener('scroll', runReveal);
-        window.addEventListener('load', runReveal);
     </script>
 </body>
 </html>
