@@ -17,9 +17,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 20px 0;
         }
 
-        /* 🧠 خلفية حية برمجية متحركة (تأثير الفضاء الرقمي المتنفس) مضمومة للعمل على أي متصفح */
         .animated-cyber-bg {
             position: fixed; inset: 0;
             background: radial-gradient(circle at center, #0a0616 0%, #020208 80%);
@@ -42,7 +42,6 @@
             100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
         }
 
-        /* هالات الضوء النيوني السائل في الزوايا */
         .neon-glow-source {
             position: fixed; width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
@@ -53,11 +52,9 @@
 
         .container { width: 90%; max-width: 550px; text-align: center; z-index: 1; }
         
-        /* الخط المستقبلي الحاد للعناوين */
         h1 { font-size: 38px; font-weight: 900; margin-bottom: 40px; letter-spacing: -1px; }
         h1 span { background: linear-gradient(90deg, #00f2fe, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(0, 242, 254, 0.3); }
 
-        /* 💎 كبسولة الأزرار المجسمة الفخمة ذات الإضاءة المحيطية المحفورة */
         .neon-capsule {
             background: #090714;
             border: 2px solid #16122c;
@@ -66,7 +63,6 @@
             display: flex; flex-direction: column; gap: 20px; width: 100%;
         }
 
-        /* تصميم الزر المجسم المتوهج العاكس للضوء كالمستقبل */
         .cyber-item {
             background: linear-gradient(135deg, #120e25 0%, #080612 100%);
             border: 1px solid #221a44;
@@ -77,7 +73,6 @@
             box-shadow: inset 0 1px 2px rgba(255,255,255,0.05), 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* شريط نيون متحرك يطوف حول الزر عند وضع الماوس */
         .cyber-item::after {
             content: ""; position: absolute; inset: 0;
             border-radius: 20px; padding: 1px;
@@ -97,7 +92,6 @@
         .project-title { font-size: 22px; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; margin-bottom: 6px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .project-status { font-size: 13px; color: #00f2fe; font-weight: 700; letter-spacing: 0.5px; opacity: 0.9; }
 
-        /* 🪂 صندوق شريط التقدم والعداد الرقمي التفاعلي الحقيقي */
         .download-panel {
             width: 100%; margin-top: 18px; display: none;
             background: #04020a; border: 1px solid #221a44;
@@ -119,26 +113,36 @@
             border-radius: 20px; box-shadow: 0 0 15px #00f2fe;
         }
         .counter-text { font-size: 14px; font-weight: 800; color: #a0aec0; font-family: monospace; }
+
+        .cyber-ads-zone {
+            margin-top: 30px;
+            background: linear-gradient(180deg, #070512 0%, #030207 100%);
+            border: 1px dashed #2d235c;
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
 
-    <!-- محرك الخلفية الرقمية الحية المدمجة -->
     <div class="animated-cyber-bg"></div>
     <div class="neon-glow-source"></div>
 
     <div class="container">
         <h1>ترسانة برمجيات <span>TIGER-CYBR-AI</span></h1>
 
-        <!-- 💎 كبسولة الأزرار المجسمة النيونية -->
         <div class="neon-capsule">
             
-            <!-- زر المشروع 1 التفاعلي -->
+            <!-- زر المشروع 1 التفاعلي المربوط بـ Adsterra عند الاكتمال -->
             <div class="cyber-item" onclick="triggerLaunch('bar-1', 'txt-1', 'box-1')">
                 <div class="project-title">[ CYBER_PROTOCOL ]</div>
                 <div class="project-status">انقر لتشغيل بروتوكول التثبيت ⚡</div>
                 
-                <!-- لوحة عداد شريط التقدم التفاعلي الخفي -->
                 <div class="download-panel" id="box-1" onclick="event.stopPropagation();">
                     <div class="parachute-anim">🪂</div>
                     <div class="bar-bg">
@@ -148,7 +152,7 @@
                 </div>
             </div>
 
-            <!-- زر المشروع 2 التفاعلي -->
+            <!-- زر المشروع 2 التفاعلي المربوط بـ Adsterra عند الاكتمال -->
             <div class="cyber-item" onclick="triggerLaunch('bar-2', 'txt-2', 'box-2')">
                 <div class="project-title">[ ENGINE_INIT_01 ]</div>
                 <div class="project-status">انقر لتشغيل بروتوكول التثبيت ⚡</div>
@@ -162,10 +166,16 @@
                 </div>
             </div>
 
+            <!-- منطقة إعلانات البنر لـ A-Ads -->
+            <div class="cyber-ads-zone">
+                <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
+                    <iframe data-aa='2454281' src='//://a-ads.com' style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- 🧠 محرك الجافا سكريبت الأصلي للعداد وشريط النيون التفاعلي -->
     <script>
         function triggerLaunch(barId, textId, boxId) {
             const box = document.getElementById(boxId);
@@ -178,14 +188,19 @@
             const timer = setInterval(function() {
                 if (progress >= 100) {
                     clearInterval(timer);
-                    text.innerText = "✓ DOWNLOAD_COMPLETE // تم التحميل!";
-                    text.style.color = "#00f2fe";
+                    text.innerHTML = "<span style='color: #00f2fe'>تم التجهيز! جاري فتح الرابط... 🚀</span>";
+                    
+                    // توجيه تلقائي وآمن للزائر إلى الرابط الذكي لـ Adsterra بعد اكتمال العداد لزيادة الأرباح
+                    setTimeout(function() {
+                        window.open("https://www.profitableratecpmnetwork.com/yg9n6zwp2n?key=fc38f2fdc96be1b732242b8a32defd8b", "_blank");
+                    }, 1000);
+                    
                 } else {
-                    progress++;
-                    bar.style.width = progress + '%';
-                    text.innerText = "DOWNLOADING_PACKAGE: " + progress + "%";
+                    progress += 2;
+                    bar.style.width = progress + "%";
+                    text.innerText = "CONNECTING_SERVER: " + progress + "%";
                 }
-            }, 35); // سرعة عداد شريط التقدم
+            }, 50);
         }
     </script>
 </body>
