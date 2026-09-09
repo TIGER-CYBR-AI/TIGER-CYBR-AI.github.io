@@ -475,7 +475,7 @@ function escapeHtml(str){
 }
 
 function getCustomPatterns(){
-  const words = JSON.parse(localStorage.getItem('tiger_custom_words') || '[]');
+  const words = JSON.parse(safeStorage.getItem('tiger_custom_words') || '[]');
   return words.map(w => ({
     re: new RegExp(w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
     keep: ''
@@ -546,7 +546,24 @@ function showToast(){
    مجاناً. لما تربط بوابة الدفع (NOWPayments)، لازم كود التفعيل
    يتحقق فعلياً من خدمة خارجية (مثلاً webhook بيولّد كود فريد لكل
    عملية دفع وتتحقق منه الصفحة عبر طلب شبكة)، مش بمنطق محلي متل هلق. */
-let isPremium = localStorage.getItem('tiger_premium') === 'true';
+
+/* تخزين آمن: بعض البيئات (متل معاينة الملفات جوا iframe) بتمنع
+   localStorage. هاد wrapper بيجرب localStorage، وإذا فشل بيستخدم
+   متغير بالذاكرة كبديل مؤقت (تنمسح لما تسكر الصفحة، بس الموقع
+   بيضل شغال بدل ما ينهار السكريبت كامل بصمت). */
+const memoryStore = {};
+const safeStorage = {
+  getItem(key){
+    try { return localStorage.getItem(key); }
+    catch(e){ return memoryStore[key] ?? null; }
+  },
+  setItem(key, value){
+    try { localStorage.setItem(key, value); }
+    catch(e){ memoryStore[key] = value; }
+  }
+};
+
+let isPremium = safeStorage.getItem('tiger_premium') === 'true';
 const featureInfo = {
   history: {
     title: '📜 سجل النصوص المحفوظ',
@@ -612,7 +629,7 @@ document.getElementById('unlockBtn').addEventListener('click', () => {
   const code = document.getElementById('licenseInput').value.trim();
   if(code.length >= 6){
     isPremium = true;
-    localStorage.setItem('tiger_premium', 'true');
+    safeStorage.setItem('tiger_premium', 'true');
     updateProUI();
     document.getElementById('modalUnlockArea').style.display = 'none';
     document.getElementById('modalUnlockedArea').style.display = 'block';
@@ -623,15 +640,15 @@ document.getElementById('unlockBtn').addEventListener('click', () => {
 
 /* History feature */
 function saveToHistory(text){
-  let history = JSON.parse(localStorage.getItem('tiger_history') || '[]');
+  let history = JSON.parse(safeStorage.getItem('tiger_history') || '[]');
   history.unshift({ text, date: new Date().toLocaleString('ar') });
   history = history.slice(0, 10);
-  localStorage.setItem('tiger_history', JSON.stringify(history));
+  safeStorage.setItem('tiger_history', JSON.stringify(history));
   renderHistory();
 }
 function renderHistory(){
   const list = document.getElementById('historyList');
-  const history = JSON.parse(localStorage.getItem('tiger_history') || '[]');
+  const history = JSON.parse(safeStorage.getItem('tiger_history') || '[]');
   if(history.length === 0){
     list.innerHTML = '<div class="history-item">ما في نصوص محفوظة لسا — نظّف وانسخ أي نص وح يظهر هون.</div>';
     return;
@@ -653,22 +670,22 @@ document.getElementById('addWordBtn').addEventListener('click', () => {
   const input = document.getElementById('customWordInput');
   const word = input.value.trim();
   if(!word) return;
-  let words = JSON.parse(localStorage.getItem('tiger_custom_words') || '[]');
+  let words = JSON.parse(safeStorage.getItem('tiger_custom_words') || '[]');
   if(!words.includes(word)) words.push(word);
-  localStorage.setItem('tiger_custom_words', JSON.stringify(words));
+  safeStorage.setItem('tiger_custom_words', JSON.stringify(words));
   input.value = '';
   renderCustomWords();
 });
 function renderCustomWords(){
   const list = document.getElementById('customWordsList');
   if(!list) return;
-  const words = JSON.parse(localStorage.getItem('tiger_custom_words') || '[]');
+  const words = JSON.parse(safeStorage.getItem('tiger_custom_words') || '[]');
   list.innerHTML = words.map((w,i) => <span class="tag-item">${escapeHtml(w)}<button data-i="${i}">×</button></span>).join('');
   list.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
-      let words = JSON.parse(localStorage.getItem('tiger_custom_words') || '[]');
+      let words = JSON.parse(safeStorage.getItem('tiger_custom_words') || '[]');
       words.splice(btn.dataset.i, 1);
-      localStorage.setItem('tiger_custom_words', JSON.stringify(words));
+      safeStorage.setItem('tiger_custom_words', JSON.stringify(words));
       renderCustomWords();
     });
   });
