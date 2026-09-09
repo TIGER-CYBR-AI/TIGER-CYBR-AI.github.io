@@ -70,7 +70,25 @@
     display:inline-block; padding:13px 26px; border-radius:8px;
     font-weight:600; font-size:15px; text-decoration:none;
     cursor:pointer; border:1px solid transparent; transition:all .2s;
-    font-family:inherit;
+    font-family:inherit; min-height:46px; display:inline-flex; align-items:center; justify-content:center;
+  }
+  @media(max-width:600px){
+    nav{padding:16px 18px;}
+    .nav-links{gap:16px; font-size:13.5px;}
+    .hero{padding:40px 0 36px;}
+    .hero h1{font-size:30px;}
+    .hero p{font-size:16px;}
+    .hero-cta{flex-direction:column;}
+    .hero-cta .btn{width:100%;}
+    .section-head h2{font-size:24px;}
+    .tool-card{padding:18px;}
+    .tool-actions{flex-direction:column; align-items:stretch;}
+    .tool-actions .btn{width:100%;}
+    .mode-tabs{gap:6px;}
+    .mode-tab{padding:9px 14px; font-size:13px; flex:1; text-align:center;}
+    textarea, .output-box{min-height:180px; font-size:15px;}
+    .license-row{flex-direction:column; align-items:stretch;}
+    .license-row input[type="text"]{width:100%;}
   }
   .btn-primary{background:var(--accent); color:#17130F;}
   .btn-primary:hover{background:#f0742f;}
@@ -117,6 +135,29 @@
   .copy-toast.show{opacity:1;}
   .credit-row{display:flex; align-items:center; gap:8px; margin-top:16px; font-size:13.5px; color:var(--text-muted);}
   .credit-row input{accent-color:var(--accent);}
+
+  /* LICENSE / PREMIUM */
+  .premium-box{
+    margin-top:26px; padding-top:22px; border-top:1px dashed var(--line);
+  }
+  .premium-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px;}
+  .premium-head h4{font-size:15px; margin:0; font-family:'Cairo'; font-weight:700;}
+  .premium-status{font-size:12.5px; padding:4px 10px; border-radius:20px; background:rgba(166,154,137,0.15); color:var(--text-muted);}
+  .premium-status.unlocked{background:rgba(217,164,65,0.18); color:var(--accent-2);}
+  .license-row{display:flex; gap:10px;}
+  .license-row input[type="text"]{
+    flex:1; background:var(--bg-card); border:1px solid var(--line); border-radius:8px;
+    color:var(--text); padding:11px 14px; font-family:'IBM Plex Mono', monospace; font-size:14px;
+  }
+  .premium-note{font-size:13px; color:var(--text-muted); margin-top:10px;}
+  .premium-feature{display:none; margin-top:16px;}
+  .premium-feature.show{display:block;}
+  .history-list{display:flex; flex-direction:column; gap:8px; max-height:180px; overflow-y:auto;}
+  .history-item{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:8px;
+    padding:10px 12px; font-size:13px; color:var(--text-muted); cursor:pointer;
+  }
+  .history-item:hover{border-color:var(--accent-dim);}
 
   /* PROJECTS */
   .projects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px;}
@@ -196,6 +237,22 @@
     </div>
 
     <div class="stat-line" id="statLine"></div>
+
+    <div class="premium-box">
+      <div class="premium-head">
+        <h4>سجل النصوص المحفوظ (ميزة مدفوعة)</h4>
+        <span class="premium-status" id="premiumStatus">🔒 مقفلة</span>
+      </div>
+      <div class="license-row">
+        <input type="text" id="licenseInput" placeholder="أدخل كود التفعيل هون...">
+        <button class="btn btn-ghost" id="unlockBtn">تفعيل</button>
+      </div>
+      <div class="premium-note" id="premiumNote">بعد الدفع بتوصلك كود التفعيل تلقائياً. الميزة بتحفظ آخر 10 نصوص نظّفتها محلياً بمتصفحك.</div>
+
+      <div class="premium-feature" id="historyFeature">
+        <div class="history-list" id="historyList"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -331,8 +388,81 @@ document.getElementById('copyBtn').addEventListener('click', () => {
     const toast = document.getElementById('toast');
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 1500);
+
+    if(isPremium && text.trim()){
+      saveToHistory(text.trim());
+    }
   });
 });
+
+/* ===== License / Premium (client-side placeholder) =====
+   ملاحظة تقنية: هاد التحقق شغال بالكامل بالمتصفح كمرحلة أولى (MVP).
+   لما تجهز بوابة الدفع، الكود هون لازم يتبدل بطلب فعلي للسيرفر/خدمة
+   التحقق (مثلاً NOWPayments webhook يولّد كود فريد لكل عملية دفع)
+   بدل التحقق المحلي، لأن أي كود ثابت بالواجهة الأمامية ممكن ينسرق. */
+let isPremium = localStorage.getItem('tiger_premium') === 'true';
+
+function updatePremiumUI(){
+  const status = document.getElementById('premiumStatus');
+  const feature = document.getElementById('historyFeature');
+  const note = document.getElementById('premiumNote');
+  if(isPremium){
+    status.textContent = '✓ مفعّلة';
+    status.classList.add('unlocked');
+    feature.classList.add('show');
+    note.textContent = 'آخر 10 نصوص نظّفتها محفوظة هون (محلياً بمتصفحك فقط).';
+    renderHistory();
+  } else {
+    status.textContent = '🔒 مقفلة';
+    status.classList.remove('unlocked');
+    feature.classList.remove('show');
+  }
+}
+
+document.getElementById('unlockBtn').addEventListener('click', () => {
+  const code = document.getElementById('licenseInput').value.trim();
+  // TODO: استبدال هالتحقق البسيط بتحقق فعلي عبر خدمة الدفع لما تجهز
+  if(code.length >= 6){
+    isPremium = true;
+    localStorage.setItem('tiger_premium', 'true');
+    updatePremiumUI();
+  } else {
+    document.getElementById('premiumNote').textContent = 'الكود مو صحيح، تأكد إنه نسخته كامل من إيميل التفعيل.';
+  }
+});
+
+function saveToHistory(text){
+  let history = JSON.parse(localStorage.getItem('tiger_history') || '[]');
+  history.unshift({ text, date: new Date().toLocaleString('ar') });
+  history = history.slice(0, 10);
+  localStorage.setItem('tiger_history', JSON.stringify(history));
+  renderHistory();
+}
+
+function renderHistory(){
+  const list = document.getElementById('historyList');
+  const history = JSON.parse(localStorage.getItem('tiger_history') || '[]');
+  if(history.length === 0){
+    list.innerHTML = '<div class="history-item">ما في نصوص محفوظة لسا — نظّف وانسخ أي نص وح يظهر هون.</div>';
+    return;
+  }
+  list.innerHTML = history.map((h, i) => `
+    <div class="history-item" data-index="${i}">${h.date} — ${h.text.slice(0,60)}${h.text.length>60?'...':''}</div>
+  `).join('');
+  list.querySelectorAll('.history-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const idx = item.dataset.index;
+      if(idx !== undefined){
+        navigator.clipboard.writeText(history[idx].text);
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+      }
+    });
+  });
+}
+
+updatePremiumUI();
 </script>
 
 </body>
